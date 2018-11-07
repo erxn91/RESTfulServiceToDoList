@@ -23,4 +23,18 @@ public class ToDoListService {
         User user = new User(firstname, lastname);
         return this._userList.add(user);
     }
+
+    public boolean addToDoToUser(int id, ToDo toDo) {
+        for(User user : this._userList) {
+            if(user.getID() == id) return user.addToDo(toDo);
+        }
+        return false;
+    }
+
+    public boolean removeUser(int id) {
+        for(User user : this._userList) {
+            if(user.getID() == id) return this._userList.remove(user);
+        }
+        return false;
+    }
 }
