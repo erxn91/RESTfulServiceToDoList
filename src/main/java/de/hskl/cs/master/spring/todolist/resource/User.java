@@ -9,7 +9,7 @@ public class User {
     private int _id;
     private String _firstname = "";
     private String _lastname = "";
-    private List<String> _toDoList;
+    private List<ToDo[]> _toDoList;
 
     public User() {
         this._id = idCounter++;
