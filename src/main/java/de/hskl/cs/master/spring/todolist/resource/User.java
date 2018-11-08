@@ -27,6 +27,13 @@ public class User {
         return this._toDoList.add(toDo);
     }
 
+    public boolean removeToDo(int id) {
+        for(ToDo toDo : this._toDoList) {
+            if(toDo.getID() == id) return this._toDoList.remove(toDo);
+        }
+        return false;
+    }
+
     public int getID() {
         return this._id;
     }
