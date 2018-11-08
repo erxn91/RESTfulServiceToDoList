@@ -1,10 +1,11 @@
 package de.hskl.cs.master.spring.todolist.resource;
 
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 import java.util.ArrayList;
 import java.util.List;
 
-@Component
+@Component()
 public class ToDoListService {
 
     private List<User> _userList;
@@ -72,6 +73,22 @@ public class ToDoListService {
 
     public List<User> getUserList() {
         return this._userList;
+    }
+
+    public List<User> getUsersWithFirstname(String firstname) {
+        List<User> userList = new ArrayList<>();
+        for(User user : this._userList) {
+            if(user.getFirstname().equals(firstname)) userList.add(user);
+        }
+        return userList;
+    }
+
+    public List<User> getUsersWithLastname(String lastname) {
+        List<User> userList = new ArrayList<>();
+        for(User user : this._userList) {
+            if(user.getLastname().equals(lastname)) userList.add(user);
+        }
+        return userList;
     }
 
     public User getUser(int id) {
