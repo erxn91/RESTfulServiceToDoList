@@ -1,11 +1,11 @@
 package de.hskl.cs.master.spring.todolist.resource;
 
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
+
 import java.util.ArrayList;
 import java.util.List;
 
-@Component()
+@Service
 public class ToDoListService {
 
     private List<User> _userList;
@@ -14,24 +14,21 @@ public class ToDoListService {
         this._userList = new ArrayList<>();
     }
 
-    public boolean addUser() {
-        User user = new User();
-        return this._userList.add(user);
+    public boolean addUser(User user) {
+        if(user.getFirstname() != null && user.getLastname() != null) {
+            return this._userList.add(user);
+        }
+        return false;
     }
 
-    public boolean addUser(String firstname, String lastname) {
-        User user = new User(firstname, lastname);
-        return this._userList.add(user);
-    }
-
-    public boolean addToDoToUser(int id, ToDo toDo) {
+    public boolean addToDo(int id, ToDo toDo) {
         for(User user : this._userList) {
             if(user.getID() == id) return user.addToDo(toDo);
         }
         return false;
     }
 
-    public boolean removeToDoFromUser(int id, ToDo toDo) {
+    public boolean removeToDo(int id, ToDo toDo) {
         for(User user : this._userList) {
             if(user.getID() == id) return user.removeToDo(toDo.getID());
         }

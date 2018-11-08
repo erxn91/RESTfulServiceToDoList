@@ -1,42 +1,50 @@
 package de.hskl.cs.master.spring.todolist.resource;
 
-import java.util.Date;
+import java.sql.Timestamp;
 
 public class ToDo {
 
     private static int idCounter = 1;
-    private int _id;
-    private Date _creationDate;
-    private String _description;
-    private Date _completionDate;
-    private boolean _completed;
+    private int id;
+    private Timestamp creationDate;
+    private String description;
+    private Timestamp completionDate;
+    private boolean completed;
+
+    public ToDo() {
+        this.id = idCounter++;
+        this.creationDate = new Timestamp(System.currentTimeMillis());
+        this.description = "noch keine Beschreibung";
+    }
 
     public ToDo(String description) {
-        this._id = idCounter++;
-        this._description = description;
+        this.id = idCounter++;
+        this.creationDate = new Timestamp(System.currentTimeMillis());
+        this.description = description;
     }
 
     public int getID() {
-        return this._id;
+        return this.id;
     }
 
-    public Date getCreationDate() {
-        return this._creationDate;
+    public Timestamp getCreationDate() {
+        return this.creationDate;
     }
 
     public String getDescription() {
-        return this._description;
+        return this.description;
     }
 
-    public Date getCompletionDate() {
-        return this._completionDate;
+    public Timestamp getCompletionDate() {
+        return this.completionDate;
     }
 
     public boolean getCompleted() {
-        return this._completed;
+        return this.completed;
     }
 
     public void setCompleted(boolean complete) {
-        this._completed = complete;
+        this.completed = complete;
+        this.completionDate = new Timestamp(System.currentTimeMillis());
     }
 }

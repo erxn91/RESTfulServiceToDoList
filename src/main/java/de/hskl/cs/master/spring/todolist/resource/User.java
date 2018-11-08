@@ -6,55 +6,55 @@ import java.util.List;
 public class User {
 
     private static int idCounter = 1;
-    private int _id;
-    private String _firstname = "";
-    private String _lastname = "";
-    private List<ToDo> _toDoList;
+    private int id;
+    private String firstname;
+    private String lastname;
+    private List<ToDo> toDoList;
 
     public User() {
-        this._id = idCounter++;
-        this._toDoList = new ArrayList<>();
+        this.id = idCounter++;
+        this.toDoList = new ArrayList<>();
     }
 
     public User(String firstname, String lastname) {
-        this._id = idCounter++;
-        this._firstname = firstname;
-        this._lastname = lastname;
-        this._toDoList = new ArrayList<>();
+        this.id = idCounter++;
+        this.firstname = firstname;
+        this.lastname = lastname;
+        this.toDoList = new ArrayList<>();
     }
 
     public boolean addToDo(ToDo toDo) {
-        return this._toDoList.add(toDo);
+        return this.toDoList.add(toDo);
     }
 
     public boolean removeToDo(int id) {
-        for(ToDo toDo : this._toDoList) {
-            if(toDo.getID() == id) return this._toDoList.remove(toDo);
+        for(ToDo toDo : this.toDoList) {
+            if(toDo.getID() == id) return this.toDoList.remove(toDo);
         }
         return false;
     }
 
     public int getID() {
-        return this._id;
+        return this.id;
     }
 
     public String getFirstname() {
-        return this._firstname;
+        return this.firstname;
     }
 
     public String getLastname() {
-        return this._lastname;
+        return this.lastname;
     }
 
     public List<ToDo> getToDoList() {
-        return this._toDoList;
+        return this.toDoList;
     }
 
     public void setFirstName(String firstname) {
-        this._firstname = firstname;
+        this.firstname = firstname;
     }
 
     public void setLastname(String lastname) {
-        this._lastname = lastname;
+        this.lastname = lastname;
     }
 }
