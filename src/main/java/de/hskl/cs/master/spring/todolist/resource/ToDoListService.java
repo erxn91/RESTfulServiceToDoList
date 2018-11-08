@@ -56,7 +56,35 @@ public class ToDoListService {
         }
     }
 
+    public void completeToDo(int userID, int toDoID) {
+        List<ToDo> toDos = getToDosFromUser(userID);
+        for(ToDo toDo : toDos) {
+            if(toDo.getID() == toDoID) toDo.setCompleted(true);
+        }
+    }
+
+    public void uncompleteToDo(int userID, int toDoID) {
+        List<ToDo> toDos = getToDosFromUser(userID);
+        for(ToDo toDo : toDos) {
+            if(toDo.getID() == toDoID) toDo.setCompleted(false);
+        }
+    }
+
     public List<User> getUserList() {
         return this._userList;
+    }
+
+    public User getUser(int id) {
+        for(User user : this._userList) {
+            if(user.getID() == id) return user;
+        }
+        return null;
+    }
+
+    public List<ToDo> getToDosFromUser(int userID) {
+        for(User user : this._userList) {
+            if(user.getID() == userID) return user.getToDoList();
+        }
+        return null;
     }
 }

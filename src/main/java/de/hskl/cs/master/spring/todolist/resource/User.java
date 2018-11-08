@@ -46,6 +46,10 @@ public class User {
         return this._lastname;
     }
 
+    public List<ToDo> getToDoList() {
+        return this._toDoList;
+    }
+
     public void setFirstName(String firstname) {
         this._firstname = firstname;
     }
