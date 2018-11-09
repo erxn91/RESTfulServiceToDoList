@@ -50,7 +50,7 @@ public class User {
         return this.toDoList;
     }
 
-    public void setFirstName(String firstname) {
+    public void setFirstname(String firstname) {
         this.firstname = firstname;
     }
 

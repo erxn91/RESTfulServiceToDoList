@@ -25,6 +25,27 @@ public class ToDoListController {
         return new ResponseEntity<>( HttpStatus.CONFLICT );
     }
 
+    @PutMapping("/users/{id}")
+    public ResponseEntity<User> updateUser(@PathVariable int id, @RequestBody User user) {
+        if(user.getFirstname() != null) {
+            toDoListService.changeFirstname(id, user.getFirstname());
+        }
+        if(user.getLastname() != null) {
+            toDoListService.changeLastname(id, user.getLastname());
+        }
+        return new ResponseEntity<>( user, HttpStatus.OK );
+    }
+
+    @DeleteMapping("/users/{id}")
+    public ResponseEntity<?> deleteUser(@PathVariable int id) {
+        if(toDoListService.removeUser(id)) {
+            return new ResponseEntity<>( HttpStatus.OK );
+        }
+        else {
+            return new ResponseEntity<>( HttpStatus.NOT_FOUND );
+        }
+    }
+
     @PostMapping("/users/{id}")
     public ResponseEntity<?> addToDo(@PathVariable int id, @RequestBody ToDo toDo) {
         if(toDoListService.addToDo( id, toDo )) {
@@ -33,16 +54,11 @@ public class ToDoListController {
         return new ResponseEntity<>( HttpStatus.CONFLICT );
     }
 
-    @PostMapping("users/{userID}/{toDoID}")
+    @PutMapping("/users/{userID}/{toDoID}")
     public ResponseEntity<?> changeToDoCompletion(@PathVariable int userID,
                                                   @PathVariable int toDoID,
                                                   @RequestBody boolean complete) {
-        if(complete) {
-            toDoListService.completeToDo(userID, toDoID);
-        }
-        else {
-            toDoListService.uncompleteToDo(userID, toDoID);
-        }
+        toDoListService.updateCompletion(userID, toDoID, complete);
         return new ResponseEntity<>( HttpStatus.OK );
     }
 

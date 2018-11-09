@@ -9,7 +9,7 @@ public class ToDo {
     private Timestamp creationDate;
     private String description;
     private Timestamp completionDate;
-    private boolean completed;
+    private boolean completed = false;
 
     public ToDo() {
         this.id = idCounter++;
@@ -44,7 +44,14 @@ public class ToDo {
     }
 
     public void setCompleted(boolean complete) {
-        this.completed = complete;
-        this.completionDate = new Timestamp(System.currentTimeMillis());
+        if(complete != this.completed) {
+            if(complete) {
+                this.completionDate = new Timestamp(System.currentTimeMillis());
+            }
+            else {
+                this.completionDate = null;
+            }
+            this.completed = complete;
+        }
     }
 }

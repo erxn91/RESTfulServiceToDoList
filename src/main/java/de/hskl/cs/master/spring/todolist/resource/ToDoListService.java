@@ -23,48 +23,39 @@ public class ToDoListService {
 
     public boolean addToDo(int id, ToDo toDo) {
         for(User user : this._userList) {
-            if(user.getID() == id) return user.addToDo(toDo);
+            if(user.getID() == id) {
+                return user.addToDo(toDo);
+            }
         }
         return false;
     }
 
     public boolean removeToDo(int id, ToDo toDo) {
         for(User user : this._userList) {
-            if(user.getID() == id) return user.removeToDo(toDo.getID());
+            if(user.getID() == id) {
+                return user.removeToDo(toDo.getID());
+            }
         }
         return false;
     }
 
     public boolean removeUser(int id) {
         for(User user : this._userList) {
-            if(user.getID() == id) return this._userList.remove(user);
+            if(user.getID() == id) {
+                return this._userList.remove(user);
+            }
         }
         return false;
     }
 
-    public void changeUserFirstname(int id, String firstname) {
-        for(User user : this._userList) {
-            if(user.getID() == id) user.setFirstName(firstname);
-        }
-    }
-
-    public void changeUserLastname(int id, String lastname) {
-        for(User user : this._userList) {
-            if(user.getID() == id) user.setLastname(lastname);
-        }
-    }
-
-    public void completeToDo(int userID, int toDoID) {
-        List<ToDo> toDos = getToDosFromUser(userID);
-        for(ToDo toDo : toDos) {
-            if(toDo.getID() == toDoID) toDo.setCompleted(true);
-        }
-    }
-
-    public void uncompleteToDo(int userID, int toDoID) {
-        List<ToDo> toDos = getToDosFromUser(userID);
-        for(ToDo toDo : toDos) {
-            if(toDo.getID() == toDoID) toDo.setCompleted(false);
+    public void updateCompletion(int userID, int toDoID, boolean complete) {
+        List<ToDo> toDos = getToDos(userID);
+        if(toDos != null) {
+            for(ToDo toDo : toDos) {
+                if(toDo.getID() == toDoID) {
+                    toDo.setCompleted(complete);
+                }
+            }
         }
     }
 
@@ -95,10 +86,30 @@ public class ToDoListService {
         return null;
     }
 
-    public List<ToDo> getToDosFromUser(int userID) {
+    public List<ToDo> getToDos(int userID) {
         for(User user : this._userList) {
-            if(user.getID() == userID) return user.getToDoList();
+            if(user.getID() == userID) {
+                return user.getToDoList();
+            }
         }
         return null;
+    }
+
+    public void changeFirstname(int id, String firstname) {
+        for(User user : this._userList) {
+            if(user.getID() == id) {
+                user.setFirstname(firstname);
+                return;
+            }
+        }
+    }
+
+    public void changeLastname(int id, String lastname) {
+        for(User user : this._userList) {
+            if(user.getID() == id) {
+                user.setLastname(lastname);
+                return;
+            }
+        }
     }
 }
